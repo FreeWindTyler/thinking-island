@@ -2,6 +2,8 @@
 
 官方申请入口： https://openai.com/form/codex-for-oss/
 
+项目仓库： https://github.com/FreeWindTyler/thinking-island
+
 ## 官方关注点
 
 - 申请人应是活跃开源项目的 primary 或 core maintainer
@@ -12,19 +14,39 @@
 ## 申请前检查清单
 
 - [ ] GitHub 个人资料设为公开
-- [ ] 仓库设为公开
-- [ ] README 说明项目目标、运行方式和路线图
-- [ ] 有 MIT License
-- [ ] 有 CONTRIBUTING.md
-- [ ] 有 ROADMAP.md
-- [ ] 有 SECURITY.md
+- [x] 仓库设为公开
+- [x] README 说明项目目标、运行方式和路线图
+- [x] 有 MIT License
+- [x] 有 CONTRIBUTING.md
+- [x] 有 SUPPORT.md
+- [x] 有 GOVERNANCE.md
+- [x] 有 ROADMAP.md
+- [x] 有 SECURITY.md
+- [x] 有 CHANGELOG.md
+- [x] 有 CODEOWNERS 标记 primary maintainer
+- [x] 有 GitHub issue templates 和 PR template
+- [x] 有自动化检查脚本和 GitHub Actions workflow
+- [x] 有错题复习核心流程自动化测试
+- [x] 有 GitHub Pages 自动部署 workflow
+- [x] 题库已拆分到独立数据文件，方便社区维护
+- [x] 本地开发和 CI 不依赖额外 npm 包
+- [x] 有更严格的题库质量校验规则
+- [x] 有 v0.1.0 release audit 和发布说明草稿
+- [x] 有 GitHub 网页上传指南和申请证据包
+- [x] 有公开发布运行手册和申请预检脚本
+- [x] 每道题已有稳定 ID，支持错题复习和学习报告演进
+- [x] 已实现本地错题复习模式
+- [x] 已增强颜色和图形题目的视觉提示
+- [x] 有题目作者指南，方便家长、老师和贡献者扩展题库
+- [x] 有首批 issue 草稿和短期维护计划
 - [ ] 至少发布一个可访问的在线演示页面
 - [ ] 至少有几个真实 issue 或 PR，体现维护活动
+- [ ] 至少发布 v0.1.0 release
 - [ ] 准备 OpenAI Organization ID
 
 ## 当前项目的现实判断
 
-这个项目目前是早期原型，教育目标清晰，但还缺少公开使用量、社区贡献、issue/PR 维护记录和在线演示。可以申请，但更强的策略是先公开仓库并持续维护一段时间，形成可验证证据后再提交。
+这个项目目前是早期原型，教育目标清晰，已经有公开仓库和基本维护文件。它仍然缺少公开使用量、社区贡献、issue/PR 维护记录、在线演示和 release 记录。可以申请，但更强的策略是先公开维护一段时间，形成可验证证据后再提交。
 
 ## 表单字段草稿
 
@@ -50,5 +72,5 @@ The project is early but intentionally open, privacy-first, and education-focuse
 - Last name
 - ChatGPT account email
 - GitHub username
-- Public GitHub repository URL
+- Public GitHub repository URL: https://github.com/FreeWindTyler/thinking-island
 - OpenAI Organization ID

@@ -21,14 +21,35 @@
 ## 本地开发
 
 当前版本是静态 Web 应用，直接打开 `index.html` 即可运行。
+本地预览、检查和测试都只需要 Node.js，不需要安装额外 npm 包。
+
+题库位于 `data/lessons.js`。如果只贡献题目，通常不需要修改 `app.js`。
 
 提交改动前建议检查：
 
 ```powershell
-node --check app.js
+npm run check
+npm test
 ```
 
-如果修改题库，请确认每道题的 `answer` 都存在于 `choices` 中。
+如果 Windows PowerShell 拦截 `npm.ps1`，可以改用：
+
+```powershell
+npm.cmd run check
+npm.cmd test
+```
+
+如果修改题库，请确认：
+
+- 每道题都有稳定的 `id`
+- `id` 使用小写英文 slug，并在同一关卡内唯一
+- 每道题的 `answer` 都存在于 `choices` 中
+- 题干、解释、选项和视觉提示符合长度限制
+- 没有重复选项或空白视觉提示
+
+稳定题目 ID 会用于错题复习、进度追踪和未来学习报告。
+
+新增题目前，请先阅读 [题目作者指南](docs/QUESTION_AUTHOR_GUIDE.md)。
 
 ## 提交建议
 

@@ -1,0 +1,26 @@
+{
+  "name": "thinking-island",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Open-source math thinking practice app for first-grade children.",
+  "scripts": {
+    "check": "node --check app.js && node --check data/lessons.js && node --check scripts/validate-text.js && node scripts/validate-text.js && node scripts/validate-lessons.js",
+    "test": "node scripts/test-app-flow.js",
+    "release:audit": "node scripts/release-audit.js",
+    "application:preflight": "node scripts/application-preflight.js",
+    "serve": "node scripts/serve.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FreeWindTyler/thinking-island.git"
+  },
+  "keywords": [
+    "education",
+    "math",
+    "children",
+    "thinking",
+    "open-source"
+  ],
+  "author": "Thinking Island Contributors",
+  "license": "MIT"
+}
