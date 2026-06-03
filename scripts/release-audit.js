@@ -98,7 +98,14 @@ const lessons = loadLessons();
 if (lessons) {
   const questionCount = lessons.reduce((total, lesson) => total + lesson.questions.length, 0);
   requireEqual(lessons.length, 5, "lesson count");
-  requireEqual(questionCount, 25, "question count");
+  if (questionCount < 50) {
+    errors.push(`question count should be at least 50, got ${questionCount}.`);
+  }
+  for (const lesson of lessons) {
+    if (lesson.questions.length < 10) {
+      errors.push(`${lesson.id} should have at least 10 questions, got ${lesson.questions.length}.`);
+    }
+  }
 }
 
 const releaseChecklist = readText("docs/RELEASE_CHECKLIST.md");

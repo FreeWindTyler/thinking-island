@@ -130,6 +130,7 @@ function createSandbox() {
       }
     },
     Date,
+    Math,
     Set,
     JSON,
     Number,
@@ -148,6 +149,7 @@ window.__test = {
   selectAnswer,
   goNext,
   startReview,
+  renderQuestion,
   getActiveLesson,
   getQuestionSet,
   getMissedIds
@@ -179,8 +181,12 @@ const { test, elements } = createSandbox();
 
 test.startLesson("number-sense");
 const lesson = test.getActiveLesson();
+const lessonQuestions = test.getQuestionSet();
 
-for (let index = 0; index < lesson.questions.length; index += 1) {
+assert(lesson.questions.length > 5, "Each lesson should have a larger question bank than one practice session.");
+assert(lessonQuestions.length === 5, "A practice session should draw 5 questions from the larger bank.");
+
+for (let index = 0; index < lessonQuestions.length; index += 1) {
   answerCurrentQuestion(test, () => 0);
 }
 
@@ -202,19 +208,25 @@ assert(missedAfterReview === 0, "Correct review answers should clear missed ques
 assert(test.state.progress.xp > 0, "Lesson and review answers should award XP.");
 
 test.startLesson("compare");
-answerCurrentQuestion(test, (question) => question.choices.indexOf(question.answer));
-answerCurrentQuestion(test, (question) => question.choices.indexOf(question.answer));
-answerCurrentQuestion(test, (question) => question.choices.indexOf(question.answer));
+test.state.sessionQuestions = [test.getActiveLesson().questions.find((question) => question.id === "compare-symbol")];
+test.state.questionIndex = 0;
+test.renderQuestion();
 assert(fakeChoiceButtons.some((button) => button.textContent === "<"), "The < choice should render as visible text.");
 assert(fakeChoiceButtons.some((button) => button.textContent === ">"), "The > choice should render as visible text.");
 
 test.startLesson("patterns");
+test.state.sessionQuestions = [test.getActiveLesson().questions.find((question) => question.id === "red-yellow-next")];
+test.state.questionIndex = 0;
+test.renderQuestion();
 assert(
   elements.get("question-card").innerHTML.includes("token-color"),
   "Color pattern questions should render visual color tokens."
 );
 
 test.startLesson("space");
+test.state.sessionQuestions = [test.getActiveLesson().questions.find((question) => question.id === "no-corners")];
+test.state.questionIndex = 0;
+test.renderQuestion();
 assert(
   elements.get("question-card").innerHTML.includes("token-shape"),
   "Shape questions should render visual shape tokens."

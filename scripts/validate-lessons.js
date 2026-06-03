@@ -20,7 +20,8 @@ const limits = {
   maxVisualTokenLength: 12,
   maxChoiceLength: 24,
   minChoices: 3,
-  maxChoices: 5
+  maxChoices: 5,
+  minQuestionsPerLesson: 10
 };
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
@@ -49,6 +50,10 @@ for (const [lessonIndex, lesson] of lessons.entries()) {
   if (!Array.isArray(lesson.questions) || lesson.questions.length === 0) {
     errors.push(`${label}.questions must be a non-empty array.`);
     continue;
+  }
+
+  if (lesson.questions.length < limits.minQuestionsPerLesson) {
+    errors.push(`${label}.questions must contain at least ${limits.minQuestionsPerLesson} questions.`);
   }
 
   const questionIds = new Set();
