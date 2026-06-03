@@ -1,4 +1,5 @@
 const lessons = window.THINKING_ISLAND_LESSONS || [];
+const practiceQuestionCount = 5;
 
 const storageKey = "thinking-island-progress-v1";
 const today = new Date().toISOString().slice(0, 10);
@@ -12,6 +13,7 @@ const state = {
   correctInReview: 0,
   sessionMissedIds: new Set(),
   reviewQuestions: [],
+  sessionQuestions: [],
   progress: loadProgress()
 };
 
@@ -68,7 +70,31 @@ function getActiveLesson() {
 }
 
 function getQuestionSet() {
-  return state.mode === "review" ? state.reviewQuestions : getActiveLesson().questions;
+  if (state.mode === "review") {
+    return state.reviewQuestions;
+  }
+
+  if (state.sessionQuestions.length > 0) {
+    return state.sessionQuestions;
+  }
+
+  return pickLessonQuestions(getActiveLesson());
+}
+
+function shuffleItems(items) {
+  return items
+    .map((item) => ({ item, sort: Math.random() }))
+    .sort((left, right) => left.sort - right.sort)
+    .map(({ item }) => item);
+}
+
+function pickLessonQuestions(lesson) {
+  return shuffleItems(lesson.questions)
+    .slice(0, practiceQuestionCount)
+    .map((question) => ({
+      ...question,
+      choices: shuffleItems(question.choices)
+    }));
 }
 
 function getMissedIds(lessonId) {
@@ -146,10 +172,11 @@ function renderLessons() {
       const saved = state.progress.lessons[lesson.id] || { best: 0 };
       const missedCount = getMissedIds(lesson.id).length;
       const isActive = lesson.id === state.activeLessonId ? " active" : "";
+      const bankText = `题库 ${lesson.questions.length}`;
       const scoreText =
         missedCount > 0
-          ? `${saved.best || 0} / ${lesson.questions.length} · 复习 ${missedCount}`
-          : `${saved.best || 0} / ${lesson.questions.length}`;
+          ? `${saved.best || 0} / ${practiceQuestionCount} · ${bankText} · 复习 ${missedCount}`
+          : `${saved.best || 0} / ${practiceQuestionCount} · ${bankText}`;
 
       return `
         <button class="lesson-button${isActive}" type="button" data-lesson-id="${lesson.id}">
@@ -205,6 +232,7 @@ function startLesson(lessonId = state.activeLessonId) {
   state.correctInReview = 0;
   state.sessionMissedIds = new Set();
   state.reviewQuestions = [];
+  state.sessionQuestions = pickLessonQuestions(getActiveLesson());
   renderLessons();
   renderQuestion();
 }
@@ -225,6 +253,7 @@ function startReview() {
   state.mode = "review";
   state.correctInReview = 0;
   state.reviewQuestions = reviewQuestions;
+  state.sessionQuestions = [];
   renderLessons();
   renderQuestion();
 }
@@ -301,6 +330,7 @@ function selectAnswer(choiceIndex, button) {
 
 function finishLesson() {
   const lesson = getActiveLesson();
+  const questions = getQuestionSet();
   const saved = state.progress.lessons[lesson.id] || { best: 0 };
   const missedCount = getMissedIds(lesson.id).length;
 
@@ -313,11 +343,11 @@ function finishLesson() {
   renderStats();
 
   elements.progressFill.style.width = "100%";
-  elements.questionCount.textContent = `${lesson.questions.length} / ${lesson.questions.length}`;
+  elements.questionCount.textContent = `${questions.length} / ${questions.length}`;
   elements.questionCard.innerHTML = `
     <p class="prompt-kicker">关卡完成</p>
-    <h3>${escapeHtml(lesson.title)}：答对 ${state.correctInLesson} / ${lesson.questions.length}</h3>
-    <p class="support-text">今天已经完成一次思维训练。可以换一个关卡继续，也可以明天再来保持连续天数。</p>
+    <h3>${escapeHtml(lesson.title)}：答对 ${state.correctInLesson} / ${questions.length}</h3>
+    <p class="support-text">本次从 ${lesson.questions.length} 道题库中抽取 ${questions.length} 道。再练一次会遇到不同题目。</p>
   `;
   elements.choices.innerHTML = "";
   elements.feedback.textContent = missedCount > 0 ? `还有 ${missedCount} 道题可以温习一下。` : "表现稳定，进入下一座小岛吧。";
@@ -384,6 +414,7 @@ function resetProgress() {
   state.correctInReview = 0;
   state.sessionMissedIds = new Set();
   state.reviewQuestions = [];
+  state.sessionQuestions = [];
   renderStats();
   renderLessons();
   renderWelcome();
@@ -395,11 +426,11 @@ function renderWelcome() {
 
   state.mode = "lesson";
   elements.lessonLabel.textContent = "欢迎上岛";
-  elements.questionCount.textContent = `0 / ${lesson.questions.length}`;
+  elements.questionCount.textContent = `0 / ${practiceQuestionCount}`;
   elements.progressFill.style.width = "0%";
   elements.questionCard.innerHTML = `
     <p class="prompt-kicker">请选择一个关卡</p>
-    <h3>每个关卡包含 5 道题，答对会获得星星和经验值。</h3>
+    <h3>每次练习会从题库中抽取 5 道题。</h3>
     <p class="support-text">题目会训练数感、规律、比较、应用题和空间观察。答案存在本机浏览器中，适合孩子每天短时间练习。</p>
   `;
   elements.choices.innerHTML = "";

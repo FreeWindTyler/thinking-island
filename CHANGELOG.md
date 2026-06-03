@@ -7,7 +7,7 @@ All notable changes to Thinking Island will be documented in this file.
 ### Added
 
 - Initial static web app prototype.
-- Added 5 first-grade math thinking lessons with 25 total questions.
+- Added 5 first-grade math thinking lessons with an expanded question bank.
 - Added immediate feedback, explanations, XP, stars, streaks, and local progress storage.
 - Added wrong-answer review mode backed by stable question ids and local browser storage.
 - Added visual token rendering for colors and shapes in practice prompts.
@@ -21,9 +21,12 @@ All notable changes to Thinking Island will be documented in this file.
 - Added release audit script and v0.1.0 release notes draft.
 - Added CODEOWNERS, SUPPORT, GitHub web upload guide, and Codex application evidence packet.
 - Added GOVERNANCE, public launch runbook, and application preflight script.
+- Added generated first-grade question variants so each lesson has at least 10 questions.
 
 ### Changed
 
+- Changed lesson sessions to draw 5 questions from a larger bank instead of replaying the same fixed 5 questions.
+- Changed answer choices to shuffle for each new practice session.
 - Split lesson content into `data/lessons.js` so contributors can maintain question data without editing application logic.
 - Strengthened lesson validation with content quality checks for prompt length, explanation length, choice count, duplicate choices, empty visual tokens, and stable lesson ids.
 - Added stable question ids and validation for unique ids within each lesson.
