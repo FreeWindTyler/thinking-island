@@ -265,3 +265,244 @@ window.THINKING_ISLAND_LESSONS = [
     ]
   }
 ];
+
+(function expandQuestionBank() {
+  const lessons = window.THINKING_ISLAND_LESSONS;
+
+  addQuestions("number-sense", [
+    makeTen(2),
+    makeTen(4),
+    makeTen(6),
+    makeTen(8),
+    addWithinTwenty(6, 7),
+    addWithinTwenty(5, 9),
+    subtractWithinTwenty(18, 8),
+    subtractWithinTwenty(16, 6),
+    placeValue(12),
+    placeValue(17)
+  ]);
+
+  addQuestions("patterns", [
+    numberPattern("pattern-plus-two-from-one", "1、3、5、7，接下来是多少？", ["1", "3", "5", "7", "?"], "9", "每次多 2，所以 7 后面是 9。", ["8", "9", "10", "11"]),
+    numberPattern("pattern-plus-four", "4、8、12、16，接下来是多少？", ["4", "8", "12", "16", "?"], "20", "每次多 4，所以 16 后面是 20。", ["18", "19", "20", "21"]),
+    numberPattern("pattern-minus-two", "12、10、8、6，接下来是多少？", ["12", "10", "8", "6", "?"], "4", "每次少 2，所以 6 后面是 4。", ["2", "3", "4", "5"]),
+    patternQuestion("pattern-blue-green", "蓝、绿、蓝、绿，接下来是什么？", ["蓝", "绿", "蓝", "绿", "?"], "蓝", "蓝和绿轮流出现，所以下一个是蓝。", ["蓝", "绿", "红", "黄"]),
+    patternQuestion("pattern-red-red-yellow", "红、红、黄、红、红、黄，接下来是什么？", ["红", "红", "黄", "红", "红", "黄", "?"], "红", "两个红后面跟一个黄，重新开始还是红。", ["红", "黄", "蓝", "绿"]),
+    patternQuestion("pattern-square-circle", "方、圆、方、圆，接下来是什么？", ["方", "圆", "方", "圆", "?"], "方", "方和圆轮流出现，所以下一个是方。", ["方", "圆", "三角", "长方"]),
+    patternQuestion("pattern-circle-triangle-triangle", "圆、三角、三角、圆、三角、三角，接下来是什么？", ["圆", "三角", "三角", "圆", "三角", "三角", "?"], "圆", "一组是圆、三角、三角，下一组从圆开始。", ["圆", "方", "三角", "长方"])
+  ]);
+
+  addQuestions("compare", [
+    largest("largest-18", ["11", "18", "14", "9"], "18"),
+    largest("largest-20", ["20", "16", "12", "19"], "20"),
+    smallest("smallest-7", ["13", "7", "10", "16"], "7"),
+    compareSymbol("compare-12-12", "12", "12", "="),
+    compareSymbol("compare-8-15", "8", "15", "<"),
+    differenceQuestion("compare-less-14-9", "小兰有 9 颗星，小宇有 14 颗星，小兰少几颗？", ["9", "14"], "5"),
+    closestToTen("closest-8-11-15-18", ["8", "11", "15", "18"], "11"),
+    lineQuestion("line-after-four-three", "从前往后数，小东第 4；小西在小东后面 3 个位置，小西第几？", ["4", "+", "3"], "7")
+  ]);
+
+  addQuestions("stories", [
+    storyQuestion("story-fish-in", "鱼缸里有 7 条鱼，又放进 5 条，现在有几条？", ["7", "+", "5"], "12", "又放进表示增加，用 7 + 5 = 12。", ["10", "11", "12", "13"]),
+    storyQuestion("story-books-away", "书架上有 15 本书，借走 4 本，还剩几本？", ["15", "-", "4"], "11", "借走表示减少，用 15 - 4 = 11。", ["9", "10", "11", "12"]),
+    storyQuestion("story-cars-total", "停车场有 6 辆车，又来了 8 辆，一共有几辆？", ["6", "+", "8"], "14", "一共要把两部分合起来，6 + 8 = 14。", ["12", "13", "14", "15"]),
+    storyQuestion("story-stickers-left", "小米有 18 张贴纸，送给同学 8 张，还剩几张？", ["18", "-", "8"], "10", "送出后变少，18 - 8 = 10。", ["8", "9", "10", "11"]),
+    storyQuestion("story-two-step-blocks", "桌上有 9 块积木，拿走 3 块，又放上 4 块，现在有几块？", ["9", "-", "3", "+", "4"], "10", "先 9 - 3 = 6，再 6 + 4 = 10。", ["9", "10", "11", "12"]),
+    storyQuestion("story-flowers-total", "花瓶里有 8 朵红花和 7 朵黄花，一共有几朵花？", ["8", "+", "7"], "15", "红花和黄花合起来，8 + 7 = 15。", ["13", "14", "15", "16"]),
+    storyQuestion("story-cookies-left", "盘子里有 16 块饼干，吃掉 6 块，还剩几块？", ["16", "-", "6"], "10", "吃掉表示减少，16 - 6 = 10。", ["8", "9", "10", "12"])
+  ]);
+
+  addQuestions("space", [
+    shapeQuestion("space-four-corners", "哪一个图形有 4 个角？", ["圆", "方", "三角", "长方"], "方", "方形有 4 个角。", ["圆", "方", "三角", "球"]),
+    shapeQuestion("space-three-corners", "哪一个图形有 3 个角？", ["圆", "方", "三角", "长方"], "三角", "三角形有 3 个角。", ["圆", "方", "三角", "长方"]),
+    shapeQuestion("space-round-object", "下面哪个最像圆形？", ["球", "书", "门", "尺"], "球", "球看起来是圆圆的。", ["球", "书", "门", "尺"]),
+    positionQuestion("space-rightmost-book", "铅笔在橡皮左边，橡皮在书左边，谁在最右边？", ["铅笔", "橡皮", "书"], "书", "从左到右是铅笔、橡皮、书。", ["铅笔", "橡皮", "书", "都一样"]),
+    positionQuestion("space-leftmost-cup", "杯子在碗左边，碗在盘子左边，谁在最左边？", ["杯子", "碗", "盘子"], "杯子", "从左到右是杯子、碗、盘子。", ["杯子", "碗", "盘子", "都一样"]),
+    positionQuestion("space-move-left-two", "从 5 往左走 2 格，会到几？", ["1", "2", "3", "4", "5"], "3", "从 5 往左数两格是 4、3。", ["2", "3", "4", "5"]),
+    shapeQuestion("space-odd-shape", "方、方、圆、方，哪一个和其他不一样？", ["方", "方", "圆", "方"], "第 3 个", "其他都是方，第 3 个是圆。", ["第 1 个", "第 2 个", "第 3 个", "第 4 个"])
+  ]);
+
+  function addQuestions(lessonId, questions) {
+    const lesson = lessons.find((item) => item.id === lessonId);
+    if (!lesson) {
+      return;
+    }
+
+    const existingIds = new Set(lesson.questions.map((question) => question.id));
+    for (const question of questions) {
+      if (!existingIds.has(question.id)) {
+        lesson.questions.push(question);
+      }
+    }
+  }
+
+  function makeTen(value) {
+    const answer = String(10 - value);
+    return {
+      id: `make-ten-with-${value}`,
+      type: "数字朋友",
+      prompt: `${value} 和几合起来是 10？`,
+      visual: [String(value), "+", "?"],
+      choices: choiceSet(answer, ["1", "2", "3", "4", "5", "6", "7", "8"]),
+      answer,
+      explain: `${value} 再添 ${answer} 就是 10。`
+    };
+  }
+
+  function addWithinTwenty(left, right) {
+    const answer = String(left + right);
+    return {
+      id: `add-${left}-${right}`,
+      type: "加法策略",
+      prompt: `${left} + ${right} 等于多少？`,
+      visual: [String(left), "+", String(right)],
+      choices: nearbyChoices(left + right),
+      answer,
+      explain: `先从 ${left} 往后数 ${right} 步，得到 ${answer}。`
+    };
+  }
+
+  function subtractWithinTwenty(left, right) {
+    const answer = String(left - right);
+    return {
+      id: `subtract-${left}-${right}`,
+      type: "减法想象",
+      prompt: `${left} - ${right} 等于多少？`,
+      visual: [String(left), "-", String(right)],
+      choices: nearbyChoices(left - right),
+      answer,
+      explain: `从 ${left} 里拿走 ${right}，还剩 ${answer}。`
+    };
+  }
+
+  function placeValue(value) {
+    const ones = value - 10;
+    const answer = `1 个十和 ${ones} 个一`;
+    return {
+      id: `place-value-${value}`,
+      type: "数位理解",
+      prompt: `${value} 里面有几个十和几个一？`,
+      visual: ["10", ...Array.from({ length: ones }, () => "1")],
+      choices: [answer, `${ones} 个十和 1 个一`, `${value} 个十`, "0 个一"],
+      answer,
+      explain: `${value} 可以看成 10 加 ${ones}。`
+    };
+  }
+
+  function numberPattern(id, prompt, visual, answer, explain, choices) {
+    return { id, type: "数字规律", prompt, visual, choices, answer, explain };
+  }
+
+  function patternQuestion(id, prompt, visual, answer, explain, choices) {
+    return { id, type: "观察规律", prompt, visual, choices, answer, explain };
+  }
+
+  function largest(id, visual, answer) {
+    return {
+      id,
+      type: "大小比较",
+      prompt: "下面哪一个数最大？",
+      visual,
+      choices: visual,
+      answer,
+      explain: `${answer} 比其他几个数都大。`
+    };
+  }
+
+  function smallest(id, visual, answer) {
+    return {
+      id,
+      type: "大小比较",
+      prompt: "下面哪一个数最小？",
+      visual,
+      choices: visual,
+      answer,
+      explain: `${answer} 比其他几个数都小。`
+    };
+  }
+
+  function compareSymbol(id, left, right, answer) {
+    return {
+      id,
+      type: "符号选择",
+      prompt: `${left} 和 ${right} 中间应该填哪个符号？`,
+      visual: [left, "?", right],
+      choices: [">", "<", "=", "+"],
+      answer,
+      explain: `${left} 和 ${right} 比较后，用 ${answer}。`
+    };
+  }
+
+  function differenceQuestion(id, prompt, visual, answer) {
+    return {
+      id,
+      type: "多少比较",
+      prompt,
+      visual,
+      choices: nearbyChoices(Number(answer)),
+      answer,
+      explain: `${visual[1]} - ${visual[0]} = ${answer}。`
+    };
+  }
+
+  function closestToTen(id, visual, answer) {
+    return {
+      id,
+      type: "距离比较",
+      prompt: "哪一个离 10 最近？",
+      visual,
+      choices: visual,
+      answer,
+      explain: `${answer} 离 10 最近。`
+    };
+  }
+
+  function lineQuestion(id, prompt, visual, answer) {
+    return {
+      id,
+      type: "排队位置",
+      prompt,
+      visual,
+      choices: nearbyChoices(Number(answer)),
+      answer,
+      explain: `${visual[0]} 后面 ${visual[2]} 个位置是第 ${answer}。`
+    };
+  }
+
+  function storyQuestion(id, prompt, visual, answer, explain, choices) {
+    return { id, type: "应用题", prompt, visual, choices, answer, explain };
+  }
+
+  function shapeQuestion(id, prompt, visual, answer, explain, choices) {
+    return { id, type: "图形观察", prompt, visual, choices, answer, explain };
+  }
+
+  function positionQuestion(id, prompt, visual, answer, explain, choices) {
+    return { id, type: "位置判断", prompt, visual, choices, answer, explain };
+  }
+
+  function nearbyChoices(value) {
+    return choiceSet(String(value), [
+      String(value - 2),
+      String(value - 1),
+      String(value + 1),
+      String(value + 2),
+      String(value + 3)
+    ]);
+  }
+
+  function choiceSet(answer, candidates) {
+    const choices = [String(answer)];
+    for (const candidate of candidates) {
+      const value = String(candidate);
+      if (value !== answer && !choices.includes(value) && Number(value) >= 0) {
+        choices.push(value);
+      }
+      if (choices.length === 4) {
+        break;
+      }
+    }
+    return choices;
+  }
+})();
