@@ -27,7 +27,8 @@ This first release introduces Thinking Island, a privacy-first open-source math 
 
 Highlights:
 - 5 lesson tracks: number sense, patterns, comparison, story problems, and spatial observation
-- 25 total practice questions
+- Expanded question bank with 64 total practice questions
+- Each practice session draws 5 questions from the larger bank
 - Stable question ids for future wrong-answer review and learning reports
 - Wrong-answer review mode using local browser storage
 - Visual token rendering for colors and shapes
