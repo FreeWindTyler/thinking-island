@@ -1,3 +1,8 @@
+[English](README_EN.md) | 中文
+
+在线演示：https://freewindtyler.github.io/thinking-island/
+
+
 # 思维小岛
 
 思维小岛是一个面向一年级孩子的开源数学思维锻炼项目。它借鉴 Duolingo 式短关卡、即时反馈、连续学习和经验值机制，让孩子在轻量练习里建立数感、规律观察、比较推理、应用题理解和空间意识。
