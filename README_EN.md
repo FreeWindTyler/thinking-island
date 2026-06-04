@@ -125,3 +125,17 @@ See [SUPPORT.md](SUPPORT.md).
 ## License
 
 This project is released under the MIT License.
+
+## Feedback
+
+Found a bug?
+
+Please open an issue.
+
+Have an idea?
+
+Please start a discussion.
+
+Want to contribute?
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
