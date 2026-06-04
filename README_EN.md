@@ -1,3 +1,7 @@
+![Release](https://img.shields.io/github/v/release/FreeWindTyler/thinking-island)
+![License](https://img.shields.io/github/license/FreeWindTyler/thinking-island)
+![Issues](https://img.shields.io/github/issues/FreeWindTyler/thinking-island)
+
 # Thinking Island
 
 Thinking Island is an open-source math thinking practice app for first-grade children.
@@ -31,6 +35,20 @@ Live demo: https://freewindtyler.github.io/thinking-island/
 * Reasoning over rote calculation
 * Open and extensible educational content
 * Community-friendly maintenance
+
+## Screenshots
+
+### Home Screen
+
+![Home](docs/screenshots/home-mobile.png)
+
+### Practice Session
+
+![Practice](docs/screenshots/practice-mobile.png)
+
+### Learning Feedback
+
+![Feedback](docs/screenshots/feedback-mobile.png)
 
 ## Local Development
 
