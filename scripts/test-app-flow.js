@@ -152,7 +152,8 @@ window.__test = {
   renderQuestion,
   getActiveLesson,
   getQuestionSet,
-  getMissedIds
+  getMissedIds,
+  getReviewMastery
 };`,
     sandbox
   );
@@ -187,7 +188,7 @@ assert(lesson.questions.length > 5, "Each lesson should have a larger question b
 assert(lessonQuestions.length === 5, "A practice session should draw 5 questions from the larger bank.");
 
 for (let index = 0; index < lessonQuestions.length; index += 1) {
-  answerCurrentQuestion(test, () => 0);
+  answerCurrentQuestion(test, (question) => question.choices.findIndex((choice) => choice !== question.answer));
 }
 
 const missedAfterLesson = test.getMissedIds("number-sense").length;
@@ -203,8 +204,24 @@ while (test.state.mode === "review" && guard < 10) {
   guard += 1;
 }
 
+const missedAfterFirstReview = test.getMissedIds("number-sense").length;
+assert(missedAfterFirstReview === missedAfterLesson, "One correct review pass should keep missed questions for reinforcement.");
+
+const firstMissedId = test.getMissedIds("number-sense")[0];
+assert(
+  test.getReviewMastery("number-sense", firstMissedId) === 1,
+  "Correct review answers should record one mastery step."
+);
+
+test.startReview();
+guard = 0;
+while (test.state.mode === "review" && guard < 10) {
+  answerCurrentQuestion(test, (question) => question.choices.indexOf(question.answer));
+  guard += 1;
+}
+
 const missedAfterReview = test.getMissedIds("number-sense").length;
-assert(missedAfterReview === 0, "Correct review answers should clear missed questions.");
+assert(missedAfterReview === 0, "Two correct review passes should clear missed questions.");
 assert(test.state.progress.xp > 0, "Lesson and review answers should award XP.");
 
 test.startLesson("compare");
@@ -237,6 +254,7 @@ console.log(
     {
       status: "passed",
       missedAfterLesson,
+      missedAfterFirstReview,
       missedAfterReview,
       xp: test.state.progress.xp,
       visualTokens: "passed"
