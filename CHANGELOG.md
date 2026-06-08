@@ -2,6 +2,13 @@
 
 All notable changes to Thinking Island will be documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Strengthened wrong-answer review so missed questions require two consecutive correct answers before being cleared.
+- Updated app-flow tests to cover reinforced mistake review behavior.
+
 ## 0.1.0 - 2026-06-02
 
 ### Added
