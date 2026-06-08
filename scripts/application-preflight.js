@@ -20,13 +20,13 @@ const requiredLocalEvidence = [
 ];
 
 const publicEvidenceNeeded = [
-  "Upload all current local files to GitHub",
-  "Validate workflow passes on GitHub",
-  "Deploy GitHub Pages workflow passes on GitHub",
-  "Public demo loads at https://freewindtyler.github.io/thinking-island/",
-  "At least 3 real GitHub issues exist",
-  "v0.1.0 release is published",
-  "README screenshots are added after the demo is live",
+  "Upload the latest local maintenance changes to GitHub",
+  "Confirm Validate workflow passes after the latest maintenance update",
+  "Confirm Deploy GitHub Pages workflow passes after the latest maintenance update",
+  "Confirm the public demo still loads at https://freewindtyler.github.io/thinking-island/",
+  "Close or comment on resolved GitHub issues with the matching maintenance commit",
+  "Refresh docs/APPLICATION_EVIDENCE_PACKET.md with current public links before submitting",
+  "README screenshots are added or intentionally deferred",
   "OpenAI Organization ID is available"
 ];
 
