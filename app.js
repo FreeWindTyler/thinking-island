@@ -1,5 +1,6 @@
 const lessons = window.THINKING_ISLAND_LESSONS || [];
 const practiceQuestionCount = 5;
+const reviewMasteryTarget = 2;
 
 const storageKey = "thinking-island-progress-v1";
 const today = new Date().toISOString().slice(0, 10);
@@ -41,7 +42,8 @@ function createFallbackProgress() {
     streak: 0,
     lastPlayed: "",
     lessons: {},
-    missedByLesson: {}
+    missedByLesson: {},
+    reviewMasteryByLesson: {}
   };
 }
 
@@ -54,7 +56,8 @@ function loadProgress() {
       ...fallback,
       ...(stored || {}),
       lessons: stored?.lessons || fallback.lessons,
-      missedByLesson: stored?.missedByLesson || fallback.missedByLesson
+      missedByLesson: stored?.missedByLesson || fallback.missedByLesson,
+      reviewMasteryByLesson: stored?.reviewMasteryByLesson || fallback.reviewMasteryByLesson
     };
   } catch {
     return fallback;
@@ -99,6 +102,10 @@ function pickLessonQuestions(lesson) {
 
 function getMissedIds(lessonId) {
   return state.progress.missedByLesson[lessonId] || [];
+}
+
+function getReviewMastery(lessonId, questionId) {
+  return state.progress.reviewMasteryByLesson[lessonId]?.[questionId] || 0;
 }
 
 function escapeHtml(value) {
@@ -149,8 +156,26 @@ function setMissedIds(lessonId, ids) {
   state.progress.missedByLesson[lessonId] = Array.from(new Set(ids));
 }
 
+function setReviewMastery(lessonId, questionId, count) {
+  state.progress.reviewMasteryByLesson[lessonId] = {
+    ...(state.progress.reviewMasteryByLesson[lessonId] || {}),
+    [questionId]: Math.max(0, Math.min(count, reviewMasteryTarget))
+  };
+}
+
+function resetReviewMastery(lessonId, questionId) {
+  setReviewMastery(lessonId, questionId, 0);
+}
+
+function advanceReviewMastery(lessonId, questionId) {
+  const nextCount = getReviewMastery(lessonId, questionId) + 1;
+  setReviewMastery(lessonId, questionId, nextCount);
+  return Math.min(nextCount, reviewMasteryTarget);
+}
+
 function rememberMissedQuestion(lessonId, questionId) {
   setMissedIds(lessonId, [...getMissedIds(lessonId), questionId]);
+  resetReviewMastery(lessonId, questionId);
 }
 
 function clearMissedQuestion(lessonId, questionId) {
@@ -158,6 +183,7 @@ function clearMissedQuestion(lessonId, questionId) {
     lessonId,
     getMissedIds(lessonId).filter((id) => id !== questionId)
   );
+  resetReviewMastery(lessonId, questionId);
 }
 
 function renderStats() {
@@ -292,9 +318,20 @@ function selectAnswer(choiceIndex, button) {
       state.progress.stars += 1;
     }
 
-    clearMissedQuestion(lesson.id, question.id);
+    const wasMissedQuestion = getMissedIds(lesson.id).includes(question.id);
+    const masteryCount = wasMissedQuestion
+      ? advanceReviewMastery(lesson.id, question.id)
+      : reviewMasteryTarget;
+
+    if (wasMissedQuestion && masteryCount >= reviewMasteryTarget) {
+      clearMissedQuestion(lesson.id, question.id);
+    }
+
     button.classList.add("correct");
-    elements.feedback.textContent = `答对了！${question.explain}`;
+    elements.feedback.textContent =
+      wasMissedQuestion && masteryCount < reviewMasteryTarget
+        ? `答对了！这道错题需要连续答对 ${reviewMasteryTarget} 次才会清除，还差 ${reviewMasteryTarget - masteryCount} 次。${question.explain}`
+        : `答对了！${question.explain}`;
     elements.feedback.className = "feedback success";
   } else {
     if (state.mode === "lesson") {
