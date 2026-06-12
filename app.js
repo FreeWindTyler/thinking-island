@@ -20,6 +20,7 @@ const state = {
 
 const elements = {
   lessonList: document.querySelector("#lesson-list"),
+  progressDashboard: document.querySelector("#progress-dashboard"),
   streak: document.querySelector("#streak"),
   xp: document.querySelector("#xp"),
   stars: document.querySelector("#stars"),
@@ -102,6 +103,16 @@ function pickLessonQuestions(lesson) {
 
 function getMissedIds(lessonId) {
   return state.progress.missedByLesson[lessonId] || [];
+}
+
+function getLessonProgress(lessonId) {
+  const saved = state.progress.lessons[lessonId] || {};
+  return {
+    best: saved.best || 0,
+    attempts: saved.attempts || 0,
+    lastScore: saved.lastScore ?? null,
+    completedAt: saved.completedAt || ""
+  };
 }
 
 function getReviewMastery(lessonId, questionId) {
@@ -192,17 +203,74 @@ function renderStats() {
   elements.stars.textContent = state.progress.stars;
 }
 
+function getProgressSummary() {
+  const lessonSummaries = lessons.map((lesson) => {
+    const saved = getLessonProgress(lesson.id);
+    const missedCount = getMissedIds(lesson.id).length;
+    return {
+      lesson,
+      ...saved,
+      missedCount
+    };
+  });
+
+  const totalAttempts = lessonSummaries.reduce((total, item) => total + item.attempts, 0);
+  const completedLessons = lessonSummaries.filter((item) => item.attempts > 0).length;
+  const totalMissed = lessonSummaries.reduce((total, item) => total + item.missedCount, 0);
+  const latestLesson = lessonSummaries
+    .filter((item) => item.completedAt)
+    .sort((left, right) => right.completedAt.localeCompare(left.completedAt))[0];
+
+  return {
+    totalAttempts,
+    completedLessons,
+    totalMissed,
+    latestLesson
+  };
+}
+
+function renderProgressDashboard() {
+  const summary = getProgressSummary();
+  const latestScore =
+    summary.latestLesson && summary.latestLesson.lastScore !== null
+      ? `${summary.latestLesson.lesson.title} ${summary.latestLesson.lastScore} / ${practiceQuestionCount}`
+      : "还没有完成练习";
+
+  elements.progressDashboard.innerHTML = `
+    <div class="dashboard-heading">
+      <span>学习概览</span>
+      <small>只保存在本机</small>
+    </div>
+    <div class="dashboard-grid">
+      <div>
+        <strong>${summary.totalAttempts}</strong>
+        <span>总练习</span>
+      </div>
+      <div>
+        <strong>${summary.completedLessons}</strong>
+        <span>已练关卡</span>
+      </div>
+      <div>
+        <strong>${summary.totalMissed}</strong>
+        <span>当前错题</span>
+      </div>
+    </div>
+    <p class="dashboard-latest">最近成绩：${escapeHtml(latestScore)}</p>
+  `;
+}
+
 function renderLessons() {
   elements.lessonList.innerHTML = lessons
     .map((lesson) => {
-      const saved = state.progress.lessons[lesson.id] || { best: 0 };
+      const saved = getLessonProgress(lesson.id);
       const missedCount = getMissedIds(lesson.id).length;
       const isActive = lesson.id === state.activeLessonId ? " active" : "";
-      const bankText = `题库 ${lesson.questions.length}`;
-      const scoreText =
-        missedCount > 0
-          ? `${saved.best || 0} / ${practiceQuestionCount} · ${bankText} · 复习 ${missedCount}`
-          : `${saved.best || 0} / ${practiceQuestionCount} · ${bankText}`;
+      const scoreText = [
+        `最佳 ${saved.best} / ${practiceQuestionCount}`,
+        `题库 ${lesson.questions.length}`,
+        `练习 ${saved.attempts}`,
+        `错题 ${missedCount}`
+      ].join(" · ");
 
       return `
         <button class="lesson-button${isActive}" type="button" data-lesson-id="${lesson.id}">
@@ -354,6 +422,7 @@ function selectAnswer(choiceIndex, button) {
 
   renderStats();
   renderLessons();
+  renderProgressDashboard();
   saveProgress();
 
   const isLastQuestion = state.questionIndex === questions.length - 1;
@@ -368,16 +437,20 @@ function selectAnswer(choiceIndex, button) {
 function finishLesson() {
   const lesson = getActiveLesson();
   const questions = getQuestionSet();
-  const saved = state.progress.lessons[lesson.id] || { best: 0 };
+  const saved = getLessonProgress(lesson.id);
   const missedCount = getMissedIds(lesson.id).length;
 
   state.progress.lessons[lesson.id] = {
-    best: Math.max(saved.best || 0, state.correctInLesson),
+    best: Math.max(saved.best, state.correctInLesson),
+    attempts: saved.attempts + 1,
+    lastScore: state.correctInLesson,
     completedAt: today
   };
   saveProgress();
   renderLessons();
   renderStats();
+  renderProgressDashboard();
+  renderProgressDashboard();
 
   elements.progressFill.style.width = "100%";
   elements.questionCount.textContent = `${questions.length} / ${questions.length}`;
@@ -454,6 +527,7 @@ function resetProgress() {
   state.sessionQuestions = [];
   renderStats();
   renderLessons();
+  renderProgressDashboard();
   renderWelcome();
 }
 
@@ -505,4 +579,5 @@ elements.resetProgress.addEventListener("click", resetProgress);
 
 renderStats();
 renderLessons();
+renderProgressDashboard();
 renderWelcome();
