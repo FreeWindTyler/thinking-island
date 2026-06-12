@@ -89,6 +89,7 @@ function createSandbox() {
 
   for (const id of [
     "lesson-list",
+    "progress-dashboard",
     "streak",
     "xp",
     "stars",
@@ -149,7 +150,10 @@ window.__test = {
   selectAnswer,
   goNext,
   startReview,
+  resetProgress,
   renderQuestion,
+  renderProgressDashboard,
+  getProgressSummary,
   getActiveLesson,
   getQuestionSet,
   getMissedIds,
@@ -194,6 +198,15 @@ for (let index = 0; index < lessonQuestions.length; index += 1) {
 const missedAfterLesson = test.getMissedIds("number-sense").length;
 assert(missedAfterLesson > 0, "Wrong answers should create missed-question records.");
 assert(test.state.mode === "lesson", "Finishing a lesson should return to lesson mode.");
+assert(test.state.progress.lessons["number-sense"].attempts === 1, "Finishing a lesson should increment attempts.");
+assert(test.state.progress.lessons["number-sense"].lastScore === 0, "Finishing a lesson should record the latest score.");
+assert(test.getProgressSummary().totalAttempts === 1, "Progress summary should count total attempts.");
+assert(test.getProgressSummary().totalMissed === missedAfterLesson, "Progress summary should count current missed questions.");
+assert(
+  elements.get("progress-dashboard").innerHTML.includes("学习概览") &&
+    elements.get("progress-dashboard").innerHTML.includes("当前错题"),
+  "Progress dashboard should render local learning overview and missed-question count."
+);
 
 test.startReview();
 assert(test.state.mode === "review", "Review should start when missed questions exist.");
@@ -249,6 +262,15 @@ assert(
   "Shape questions should render visual shape tokens."
 );
 
+const xpBeforeReset = test.state.progress.xp;
+test.resetProgress();
+assert(test.getProgressSummary().totalAttempts === 0, "Reset should clear total attempts.");
+assert(test.getProgressSummary().totalMissed === 0, "Reset should clear missed questions.");
+assert(
+  elements.get("progress-dashboard").innerHTML.includes("<strong>0</strong>"),
+  "Reset should render zero values in the progress dashboard."
+);
+
 console.log(
   JSON.stringify(
     {
@@ -256,7 +278,7 @@ console.log(
       missedAfterLesson,
       missedAfterFirstReview,
       missedAfterReview,
-      xp: test.state.progress.xp,
+      xp: xpBeforeReset,
       visualTokens: "passed"
     },
     null,
