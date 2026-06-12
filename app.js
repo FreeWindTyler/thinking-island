@@ -265,21 +265,23 @@ function renderLessons() {
       const saved = getLessonProgress(lesson.id);
       const missedCount = getMissedIds(lesson.id).length;
       const isActive = lesson.id === state.activeLessonId ? " active" : "";
-      const scoreText = [
+      const lessonMeta = [
         `最佳 ${saved.best} / ${practiceQuestionCount}`,
         `题库 ${lesson.questions.length}`,
         `练习 ${saved.attempts}`,
         `错题 ${missedCount}`
-      ].join(" · ");
+      ];
 
       return `
         <button class="lesson-button${isActive}" type="button" data-lesson-id="${lesson.id}">
           <span class="lesson-icon">${escapeHtml(lesson.icon)}</span>
-          <span>
+          <span class="lesson-copy">
             <span class="lesson-title">${escapeHtml(lesson.title)}</span>
             <span class="lesson-desc">${escapeHtml(lesson.desc)}</span>
           </span>
-          <span class="lesson-score">${escapeHtml(scoreText)}</span>
+          <span class="lesson-meta">
+            ${lessonMeta.map((item) => `<span class="lesson-meta-item">${escapeHtml(item)}</span>`).join("")}
+          </span>
         </button>
       `;
     })
