@@ -190,6 +190,10 @@ const lessonQuestions = test.getQuestionSet();
 
 assert(lesson.questions.length > 5, "Each lesson should have a larger question bank than one practice session.");
 assert(lessonQuestions.length === 5, "A practice session should draw 5 questions from the larger bank.");
+assert(
+  elements.get("lesson-list").innerHTML.includes("lesson-meta-item"),
+  "Lesson progress details should render as wrapped meta tags."
+);
 
 for (let index = 0; index < lessonQuestions.length; index += 1) {
   answerCurrentQuestion(test, (question) => question.choices.findIndex((choice) => choice !== question.answer));
