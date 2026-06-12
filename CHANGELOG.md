@@ -8,6 +8,8 @@ All notable changes to Thinking Island will be documented in this file.
 
 - Strengthened wrong-answer review so missed questions require two consecutive correct answers before being cleared.
 - Updated app-flow tests to cover reinforced mistake review behavior.
+- Added a local learner progress dashboard with total attempts, completed lessons, current missed questions, and latest score.
+- Expanded lesson progress storage with attempts and latest score while keeping data in local browser storage.
 
 ## 0.1.0 - 2026-06-02
 
