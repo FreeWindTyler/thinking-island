@@ -543,8 +543,8 @@ function renderWelcome() {
   elements.progressFill.style.width = "0%";
   elements.questionCard.innerHTML = `
     <p class="prompt-kicker">请选择一个关卡</p>
-    <h3>每次练习会从题库中抽取 5 道题。</h3>
-    <p class="support-text">题目会训练数感、规律、比较、应用题和空间观察。答案存在本机浏览器中，适合孩子每天短时间练习。</p>
+    <h3>适合 1-3 年级逐步练习，当前从一年级基础开始。</h3>
+    <p class="support-text">题目会训练数感、规律、比较、应用建模和空间观察。答案存在本机浏览器中，适合孩子每天短时间练习。</p>
   `;
   elements.choices.innerHTML = "";
   elements.feedback.textContent = missedCount > 0 ? `当前关卡有 ${missedCount} 道题可以复习。` : "";
