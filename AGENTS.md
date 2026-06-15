@@ -4,7 +4,7 @@ This file gives coding agents and maintainers the project rules for Thinking Isl
 
 ## Project Goal
 
-Build an open-source, privacy-first math thinking practice app for first-grade children. The app should feel lightweight and motivating, while avoiding pressure, ranking, tracking, or data collection.
+Build an open-source, privacy-first elementary math thinking practice app. The project should remain especially friendly for grades 1-3, with the current public route focused on first-grade foundation practice. The app should feel lightweight and motivating, while avoiding pressure, ranking, tracking, or data collection.
 
 ## Current Stack
 
@@ -19,6 +19,7 @@ Build an open-source, privacy-first math thinking practice app for first-grade c
 - Keep the app runnable by opening `index.html` directly.
 - Keep child-facing Chinese copy short, concrete, and encouraging.
 - Do not add tracking, ads, account collection, or unnecessary third-party scripts.
+- Any new lesson must include `grade`, `gradeBand`, `domain`, and `level`.
 - Any new question must include `id`, `type`, `prompt`, `visual`, `choices`, `answer`, and `explain`.
 - Question ids must be stable lowercase slugs and unique within the lesson.
 - The correct answer must be present in `choices`.

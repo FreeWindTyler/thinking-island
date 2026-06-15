@@ -20,7 +20,7 @@ The primary maintainer is responsible for:
 Project decisions should prioritize:
 
 1. child privacy and safety
-2. clear first-grade learning value
+2. clear lower-elementary math thinking value
 3. low-pressure learning experience
 4. maintainability for families, teachers, and contributors
 5. simple self-hosting and zero unnecessary dependencies
@@ -32,7 +32,7 @@ Question content changes should follow `docs/QUESTION_AUTHOR_GUIDE.md`.
 Content pull requests should explain:
 
 - the target thinking skill
-- why the question is suitable for first-grade children
+- why the question is suitable for the intended lower-elementary grade
 - how the explanation helps the child understand the answer
 
 ## Sensitive Changes

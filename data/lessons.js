@@ -1,6 +1,10 @@
 window.THINKING_ISLAND_LESSONS = [
   {
     id: "number-sense",
+    grade: 1,
+    gradeBand: "lower",
+    domain: "number-sense",
+    level: "foundation",
     icon: "10",
     title: "数感热身",
     desc: "拆数、补数、看数量",
@@ -54,6 +58,10 @@ window.THINKING_ISLAND_LESSONS = [
   },
   {
     id: "patterns",
+    grade: 1,
+    gradeBand: "lower",
+    domain: "patterns",
+    level: "foundation",
     icon: "AB",
     title: "规律侦探",
     desc: "发现重复和变化",
@@ -107,6 +115,10 @@ window.THINKING_ISLAND_LESSONS = [
   },
   {
     id: "compare",
+    grade: 1,
+    gradeBand: "lower",
+    domain: "compare",
+    level: "foundation",
     icon: "<>",
     title: "比较高手",
     desc: "大小、多少、先后",
@@ -160,6 +172,10 @@ window.THINKING_ISLAND_LESSONS = [
   },
   {
     id: "stories",
+    grade: 1,
+    gradeBand: "lower",
+    domain: "word-problems",
+    level: "foundation",
     icon: "文",
     title: "故事算一算",
     desc: "把话变成算式",
@@ -213,6 +229,10 @@ window.THINKING_ISLAND_LESSONS = [
   },
   {
     id: "space",
+    grade: 1,
+    gradeBand: "lower",
+    domain: "space",
+    level: "foundation",
     icon: "形",
     title: "空间观察",
     desc: "图形、位置、组合",

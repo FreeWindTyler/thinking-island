@@ -17,7 +17,7 @@ If you are reporting a child-safety or privacy concern, describe the risk withou
 
 ## Project Scope
 
-The project currently focuses on first-grade math thinking practice:
+The project currently focuses on elementary math thinking practice, with the public route focused on grade 1 foundations and future content planned for grades 1-3:
 
 - number sense
 - patterns

@@ -11,6 +11,8 @@ const lessons = sandbox.window.THINKING_ISLAND_LESSONS;
 const errors = [];
 const lessonIds = new Set();
 const lessonIdPattern = /^[a-z][a-z0-9-]*$/;
+const allowedGradeBands = new Set(["lower"]);
+const allowedLevels = new Set(["foundation", "practice", "challenge"]);
 const limits = {
   maxLessonTitleLength: 12,
   maxLessonDescriptionLength: 24,
@@ -32,6 +34,9 @@ for (const [lessonIndex, lesson] of lessons.entries()) {
   const label = lesson.id || `lesson-${lessonIndex + 1}`;
 
   requireText(lesson.id, `${label}.id`);
+  requireText(lesson.gradeBand, `${label}.gradeBand`);
+  requireText(lesson.domain, `${label}.domain`);
+  requireText(lesson.level, `${label}.level`);
   requireText(lesson.icon, `${label}.icon`);
   requireText(lesson.title, `${label}.title`);
   requireText(lesson.desc, `${label}.desc`);
@@ -40,6 +45,22 @@ for (const [lessonIndex, lesson] of lessons.entries()) {
 
   if (typeof lesson.id === "string" && !lessonIdPattern.test(lesson.id)) {
     errors.push(`${label}.id must be a stable lowercase slug.`);
+  }
+
+  if (!Number.isInteger(lesson.grade) || lesson.grade < 1 || lesson.grade > 6) {
+    errors.push(`${label}.grade must be an integer from 1 to 6.`);
+  }
+
+  if (typeof lesson.gradeBand === "string" && !allowedGradeBands.has(lesson.gradeBand)) {
+    errors.push(`${label}.gradeBand must be one of: ${Array.from(allowedGradeBands).join(", ")}.`);
+  }
+
+  if (typeof lesson.domain === "string" && !lessonIdPattern.test(lesson.domain)) {
+    errors.push(`${label}.domain must be a stable lowercase slug.`);
+  }
+
+  if (typeof lesson.level === "string" && !allowedLevels.has(lesson.level)) {
+    errors.push(`${label}.level must be one of: ${Array.from(allowedLevels).join(", ")}.`);
   }
 
   if (lessonIds.has(lesson.id)) {

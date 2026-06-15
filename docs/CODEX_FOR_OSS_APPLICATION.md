@@ -52,11 +52,11 @@
 
 ### Describe your role
 
-Primary maintainer. I created and maintain the project, own the repository, review changes, manage releases, define the roadmap, and ensure the content remains safe, age-appropriate, and useful for first-grade math thinking practice.
+Primary maintainer. I created and maintain the project, own the repository, review changes, manage releases, define the roadmap, and ensure the content remains safe, age-appropriate, and useful for elementary math thinking practice, with the current route focused on grade 1 foundations and grades 1-3 expansion.
 
 ### Why does this repository qualify?
 
-Thinking Island is an open-source math-thinking practice tool for first-grade children, designed for families, teachers, and community educators who need a free, self-hostable learning app. It focuses on number sense, patterns, comparison, story problems, and spatial reasoning, with child-safe UX and privacy-first local progress storage.
+Thinking Island is an open-source elementary math-thinking practice tool, designed for families, teachers, and community educators who need a free, self-hostable learning app. It currently focuses on grade 1 foundations while preparing for grades 1-3 expansion across number sense, patterns, comparison, word-problem modeling, and spatial reasoning, with child-safe UX and privacy-first local progress storage.
 
 ### How will you use API credits for your project?
 

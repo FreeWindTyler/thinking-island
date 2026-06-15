@@ -157,7 +157,8 @@ window.__test = {
   getActiveLesson,
   getQuestionSet,
   getMissedIds,
-  getReviewMastery
+  getReviewMastery,
+  lessons
 };`,
     sandbox
   );
@@ -183,6 +184,18 @@ function answerCurrentQuestion(test, strategy) {
 
 const fakeChoiceButtons = [];
 const { test, elements } = createSandbox();
+
+assert(test.lessons.length === 5, "The current open route should still render 5 lessons.");
+assert(
+  test.lessons.every(
+    (item) =>
+      item.grade === 1 &&
+      item.gradeBand === "lower" &&
+      /^[a-z][a-z0-9-]*$/.test(item.domain) &&
+      item.level === "foundation"
+  ),
+  "Current lessons should include lower-grade positioning metadata."
+);
 
 test.startLesson("number-sense");
 const lesson = test.getActiveLesson();

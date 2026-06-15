@@ -11,6 +11,8 @@ All notable changes to Thinking Island will be documented in this file.
 - Added a local learner progress dashboard with total attempts, completed lessons, current missed questions, and latest score.
 - Expanded lesson progress storage with attempts and latest score while keeping data in local browser storage.
 - Improved route layout and visual readability with wider lesson cards and wrapped progress tags.
+- Refined project positioning to elementary math thinking practice while keeping the current route focused on grade 1 foundations for grades 1-3 expansion.
+- Added lesson-level grade, grade band, domain, and level metadata for future lower-elementary question-bank growth.
 
 ## 0.1.0 - 2026-06-02
 
