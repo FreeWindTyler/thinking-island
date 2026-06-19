@@ -298,7 +298,8 @@ function renderQuestion() {
   elements.lessonLabel.textContent = state.mode === "review" ? `${lesson.title} · 错题复习` : lesson.title;
   elements.questionCount.textContent = `${current} / ${questions.length}`;
   elements.progressFill.style.width = `${progressPercent}%`;
-  elements.feedback.textContent = state.mode === "review" ? "把刚才卡住的题再想一次。" : "认真想一想，再选择答案。";
+  elements.feedback.textContent =
+    state.mode === "review" ? `错题要连续答对 ${reviewMasteryTarget} 次才会清除，慢慢来。` : "认真想一想，再选择答案。";
   elements.feedback.className = "feedback";
   elements.nextButton.classList.add("hidden");
   elements.startButton.classList.add("hidden");
@@ -400,7 +401,7 @@ function selectAnswer(choiceIndex, button) {
     button.classList.add("correct");
     elements.feedback.textContent =
       wasMissedQuestion && masteryCount < reviewMasteryTarget
-        ? `答对了！这道错题需要连续答对 ${reviewMasteryTarget} 次才会清除，还差 ${reviewMasteryTarget - masteryCount} 次。${question.explain}`
+        ? `答对了！还要再稳定答对 ${reviewMasteryTarget - masteryCount} 次，这道错题就会清除。${question.explain}`
         : `答对了！${question.explain}`;
     elements.feedback.className = "feedback success";
   } else {
@@ -462,7 +463,8 @@ function finishLesson() {
     <p class="support-text">本次从 ${lesson.questions.length} 道题库中抽取 ${questions.length} 道。再练一次会遇到不同题目。</p>
   `;
   elements.choices.innerHTML = "";
-  elements.feedback.textContent = missedCount > 0 ? `还有 ${missedCount} 道题可以温习一下。` : "表现稳定，进入下一座小岛吧。";
+  elements.feedback.textContent =
+    missedCount > 0 ? `还有 ${missedCount} 道题可以温习一下，复习时连续答对 ${reviewMasteryTarget} 次会清除。` : "表现稳定，进入下一座小岛吧。";
   elements.feedback.className = missedCount > 0 ? "feedback" : "feedback success";
   elements.nextButton.classList.add("hidden");
   elements.startButton.textContent = "再练一次";
@@ -485,10 +487,11 @@ function finishReview() {
   elements.questionCard.innerHTML = `
     <p class="prompt-kicker">复习完成</p>
     <h3>${escapeHtml(lesson.title)}：复习答对 ${state.correctInReview} / ${total}</h3>
-    <p class="support-text">复习只保存在本机浏览器中，不会上传孩子的学习数据。</p>
+    <p class="support-text">错题连续答对 ${reviewMasteryTarget} 次才会清除；复习只保存在本机浏览器中，不会上传孩子的学习数据。</p>
   `;
   elements.choices.innerHTML = "";
-  elements.feedback.textContent = remainingCount > 0 ? `还剩 ${remainingCount} 道题可以再想一次。` : "这组错题已经清空了。";
+  elements.feedback.textContent =
+    remainingCount > 0 ? `还剩 ${remainingCount} 道题，继续稳定答对就会清除。` : "这组错题已经清空了。";
   elements.feedback.className = remainingCount > 0 ? "feedback" : "feedback success";
   elements.nextButton.classList.add("hidden");
   elements.startButton.textContent = "回到关卡";

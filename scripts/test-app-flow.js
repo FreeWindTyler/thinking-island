@@ -227,6 +227,10 @@ assert(
 
 test.startReview();
 assert(test.state.mode === "review", "Review should start when missed questions exist.");
+assert(
+  elements.get("feedback").textContent.includes("连续答对 2 次"),
+  "Review guidance should explain the two-correct-answer rule."
+);
 
 let guard = 0;
 while (test.state.mode === "review" && guard < 10) {

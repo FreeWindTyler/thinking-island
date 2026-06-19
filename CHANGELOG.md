@@ -15,6 +15,7 @@ All notable changes to Thinking Island will be documented in this file.
 - Added lesson-level grade, grade band, domain, and level metadata for future lower-elementary question-bank growth.
 - Added mobile demo screenshots to the README and application evidence packet.
 - Refreshed the roadmap and maintenance plan for the current application-readiness phase.
+- Improved child-facing wrong-answer review guidance for the two-correct-answer rule.
 
 ## 0.1.0 - 2026-06-02
 
