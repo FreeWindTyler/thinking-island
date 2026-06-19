@@ -2,35 +2,35 @@
 
 This plan is for building Thinking Island into a credible open-source education project before applying to Codex for Open Source.
 
-## Week 1
+## Current Status
 
-- Upload the current project files to GitHub.
-- Use `docs/GITHUB_WEB_UPLOAD_GUIDE.md` if uploading through the GitHub website.
-- Confirm GitHub Actions runs successfully.
-- Confirm both `npm run check` and `npm test` pass in CI.
-- Confirm `npm run release:audit` passes in CI.
-- Confirm `npm run application:preflight` passes in CI.
-- Confirm CI does not require installing external npm packages.
-- Keep `docs/APPLICATION_EVIDENCE_PACKET.md` up to date while public evidence is added.
-- Create the first 3-5 real issues from `docs/ISSUES_TO_CREATE.md`.
-- Enable GitHub Pages with `Source: GitHub Actions` and confirm the demo URL works.
-- Publish `v0.1.0 - Initial prototype`.
-- Keep the validation workflow green after every content change.
+- GitHub repository, MIT license, governance docs, and contributor docs are in place.
+- GitHub Pages demo and `v0.1.0 - Initial prototype` are available.
+- Validation, release audit, and application preflight scripts are part of the repository.
+- The current public route is grade 1 foundations, with the product positioned for elementary math thinking practice and grades 1-3 expansion.
+- The grade 1 foundation question bank has been expanded to 85 validated questions.
+- README mobile screenshots are available for the home, practice, and feedback states.
 
-## Week 2
+## Next Two Weeks
 
-- Refine wrong-answer review UX based on early feedback.
-- Add screenshots to README.
-- Ask a parent, teacher, or contributor to review `docs/QUESTION_AUTHOR_GUIDE.md`.
-- Invite feedback from at least one parent, teacher, or developer.
-- Record feedback as GitHub issues.
+- Keep one issue per maintenance topic and one focused commit whenever possible.
+- Confirm `Validate` and `Deploy GitHub Pages` pass after each push.
+- Keep `CHANGELOG.md` updated under `Unreleased` until a larger `v0.2.0` release candidate is justified.
+- Refresh `docs/APPLICATION_EVIDENCE_PACKET.md` with current public links before submitting any application.
 
-## Week 3
+## Suggested Issue Order
 
-- Refine visual question presentation on mobile and add screenshots.
-- Add more first-grade topics.
-- Add a lightweight contributor guide for question authors.
-- Publish `v0.2.0` if enough user-facing improvements land.
+- `Review and publish expanded grade 1 question bank`
+- `Add demo screenshots to project documentation`
+- `Refresh maintenance roadmap and application evidence`
+- `Improve wrong-answer review guidance`
+- `Plan grade 2-3 content expansion`
+
+## Versioning Guidance
+
+- Do not publish a new version for a single documentation-only change.
+- Consider `v0.2.0` only after a visible set of improvements lands, such as question bank expansion, demo screenshots, and wrong-answer review guidance.
+- Keep child privacy and local-only learning data as release blockers for any new feature.
 
 ## Application Readiness Signals
 
