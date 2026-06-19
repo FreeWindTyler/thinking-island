@@ -29,6 +29,7 @@ This file tracks the public evidence that should exist before submitting the Cod
 - Release audit script
 - Application preflight script
 - Public launch runbook
+- Mobile demo screenshots for the home, practice, and feedback states
 
 ## Public Evidence Still Needed
 
@@ -39,7 +40,7 @@ This file tracks the public evidence that should exist before submitting the Cod
 - Confirm the online demo loads and supports wrong-answer review
 - Create at least 3 real GitHub issues from `docs/ISSUES_TO_CREATE.md`
 - Publish `v0.1.0 - Initial prototype`
-- Add screenshots to README after the online demo is live
+- Verify README screenshots render correctly on GitHub after upload
 - Run `npm run application:preflight` and resolve all public evidence items
 
 ## Application Form Values

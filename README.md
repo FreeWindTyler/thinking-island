@@ -8,6 +8,14 @@
 
 当前版本是无需安装依赖的静态 Web 应用，适合作为家庭、老师和社区教育者自托管或二次开发的第一版。
 
+## 演示截图
+
+![思维小岛移动端首页](screenshots/home-mobile.png)
+
+![思维小岛移动端练习页](screenshots/practice-mobile.png)
+
+![思维小岛移动端反馈页](screenshots/feedback-mobile.png)
+
 ## 功能
 
 - 5 个思维关卡：数感热身、规律侦探、比较高手、故事算一算、空间观察

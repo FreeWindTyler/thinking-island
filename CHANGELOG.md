@@ -13,6 +13,7 @@ All notable changes to Thinking Island will be documented in this file.
 - Improved route layout and visual readability with wider lesson cards and wrapped progress tags.
 - Refined project positioning to elementary math thinking practice while keeping the current route focused on grade 1 foundations for grades 1-3 expansion.
 - Added lesson-level grade, grade band, domain, and level metadata for future lower-elementary question-bank growth.
+- Added mobile demo screenshots to the README and application evidence packet.
 
 ## 0.1.0 - 2026-06-02
 
