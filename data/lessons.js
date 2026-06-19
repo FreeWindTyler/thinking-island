@@ -299,7 +299,12 @@ window.THINKING_ISLAND_LESSONS = [
     subtractWithinTwenty(18, 8),
     subtractWithinTwenty(16, 6),
     placeValue(12),
-    placeValue(17)
+    placeValue(17),
+    makeTen(1),
+    makeTen(5),
+    addWithinTwenty(8, 6),
+    subtractWithinTwenty(14, 4),
+    placeValue(19)
   ]);
 
   addQuestions("patterns", [
@@ -309,7 +314,11 @@ window.THINKING_ISLAND_LESSONS = [
     patternQuestion("pattern-blue-green", "蓝、绿、蓝、绿，接下来是什么？", ["蓝", "绿", "蓝", "绿", "?"], "蓝", "蓝和绿轮流出现，所以下一个是蓝。", ["蓝", "绿", "红", "黄"]),
     patternQuestion("pattern-red-red-yellow", "红、红、黄、红、红、黄，接下来是什么？", ["红", "红", "黄", "红", "红", "黄", "?"], "红", "两个红后面跟一个黄，重新开始还是红。", ["红", "黄", "蓝", "绿"]),
     patternQuestion("pattern-square-circle", "方、圆、方、圆，接下来是什么？", ["方", "圆", "方", "圆", "?"], "方", "方和圆轮流出现，所以下一个是方。", ["方", "圆", "三角", "长方"]),
-    patternQuestion("pattern-circle-triangle-triangle", "圆、三角、三角、圆、三角、三角，接下来是什么？", ["圆", "三角", "三角", "圆", "三角", "三角", "?"], "圆", "一组是圆、三角、三角，下一组从圆开始。", ["圆", "方", "三角", "长方"])
+    patternQuestion("pattern-circle-triangle-triangle", "圆、三角、三角、圆、三角、三角，接下来是什么？", ["圆", "三角", "三角", "圆", "三角", "三角", "?"], "圆", "一组是圆、三角、三角，下一组从圆开始。", ["圆", "方", "三角", "长方"]),
+    numberPattern("pattern-plus-five", "5、10、15，接下来是多少？", ["5", "10", "15", "?"], "20", "每次多 5，所以 15 后面是 20。", ["16", "18", "20", "21"]),
+    numberPattern("pattern-minus-three", "15、12、9、6，接下来是多少？", ["15", "12", "9", "6", "?"], "3", "每次少 3，所以 6 后面是 3。", ["2", "3", "4", "5"]),
+    patternQuestion("pattern-green-green-blue", "绿、绿、蓝、绿、绿、蓝，接下来是什么？", ["绿", "绿", "蓝", "绿", "绿", "蓝", "?"], "绿", "两个绿后面跟一个蓝，下一组从绿开始。", ["绿", "蓝", "红", "黄"]),
+    patternQuestion("pattern-triangle-square-square", "三角、方、方、三角、方、方，接下来是什么？", ["三角", "方", "方", "三角", "方", "方", "?"], "三角", "一组是三角、方、方，下一组从三角开始。", ["圆", "方", "三角", "长方"])
   ]);
 
   addQuestions("compare", [
@@ -320,7 +329,11 @@ window.THINKING_ISLAND_LESSONS = [
     compareSymbol("compare-8-15", "8", "15", "<"),
     differenceQuestion("compare-less-14-9", "小兰有 9 颗星，小宇有 14 颗星，小兰少几颗？", ["9", "14"], "5"),
     closestToTen("closest-8-11-15-18", ["8", "11", "15", "18"], "11"),
-    lineQuestion("line-after-four-three", "从前往后数，小东第 4；小西在小东后面 3 个位置，小西第几？", ["4", "+", "3"], "7")
+    lineQuestion("line-after-four-three", "从前往后数，小东第 4；小西在小东后面 3 个位置，小西第几？", ["4", "+", "3"], "7"),
+    smallest("smallest-4", ["4", "8", "13", "17"], "4"),
+    compareSymbol("compare-16-10", "16", "10", ">"),
+    differenceQuestion("compare-less-16-11", "小贝有 11 张卡，小宁有 16 张卡，小贝少几张？", ["11", "16"], "5"),
+    closestToTen("closest-6-9-12-17", ["6", "9", "12", "17"], "9")
   ]);
 
   addQuestions("stories", [
@@ -330,7 +343,11 @@ window.THINKING_ISLAND_LESSONS = [
     storyQuestion("story-stickers-left", "小米有 18 张贴纸，送给同学 8 张，还剩几张？", ["18", "-", "8"], "10", "送出后变少，18 - 8 = 10。", ["8", "9", "10", "11"]),
     storyQuestion("story-two-step-blocks", "桌上有 9 块积木，拿走 3 块，又放上 4 块，现在有几块？", ["9", "-", "3", "+", "4"], "10", "先 9 - 3 = 6，再 6 + 4 = 10。", ["9", "10", "11", "12"]),
     storyQuestion("story-flowers-total", "花瓶里有 8 朵红花和 7 朵黄花，一共有几朵花？", ["8", "+", "7"], "15", "红花和黄花合起来，8 + 7 = 15。", ["13", "14", "15", "16"]),
-    storyQuestion("story-cookies-left", "盘子里有 16 块饼干，吃掉 6 块，还剩几块？", ["16", "-", "6"], "10", "吃掉表示减少，16 - 6 = 10。", ["8", "9", "10", "12"])
+    storyQuestion("story-cookies-left", "盘子里有 16 块饼干，吃掉 6 块，还剩几块？", ["16", "-", "6"], "10", "吃掉表示减少，16 - 6 = 10。", ["8", "9", "10", "12"]),
+    storyQuestion("story-kites-away", "天空有 14 只风筝，收回 5 只，还剩几只？", ["14", "-", "5"], "9", "收回后变少，14 - 5 = 9。", ["8", "9", "10", "11"]),
+    storyQuestion("story-marbles-total", "盒子里有 9 颗珠子，又放进 6 颗，一共有几颗？", ["9", "+", "6"], "15", "两部分合起来，9 + 6 = 15。", ["13", "14", "15", "16"]),
+    storyQuestion("story-two-step-pencils", "笔筒里有 12 支笔，拿走 4 支，又放回 2 支，现在有几支？", ["12", "-", "4", "+", "2"], "10", "先 12 - 4 = 8，再 8 + 2 = 10。", ["8", "9", "10", "12"]),
+    storyQuestion("story-eggs-left", "篮子里有 17 个鸡蛋，用掉 7 个，还剩几个？", ["17", "-", "7"], "10", "用掉后变少，17 - 7 = 10。", ["9", "10", "11", "12"])
   ]);
 
   addQuestions("space", [
@@ -340,7 +357,11 @@ window.THINKING_ISLAND_LESSONS = [
     positionQuestion("space-rightmost-book", "铅笔在橡皮左边，橡皮在书左边，谁在最右边？", ["铅笔", "橡皮", "书"], "书", "从左到右是铅笔、橡皮、书。", ["铅笔", "橡皮", "书", "都一样"]),
     positionQuestion("space-leftmost-cup", "杯子在碗左边，碗在盘子左边，谁在最左边？", ["杯子", "碗", "盘子"], "杯子", "从左到右是杯子、碗、盘子。", ["杯子", "碗", "盘子", "都一样"]),
     positionQuestion("space-move-left-two", "从 5 往左走 2 格，会到几？", ["1", "2", "3", "4", "5"], "3", "从 5 往左数两格是 4、3。", ["2", "3", "4", "5"]),
-    shapeQuestion("space-odd-shape", "方、方、圆、方，哪一个和其他不一样？", ["方", "方", "圆", "方"], "第 3 个", "其他都是方，第 3 个是圆。", ["第 1 个", "第 2 个", "第 3 个", "第 4 个"])
+    shapeQuestion("space-odd-shape", "方、方、圆、方，哪一个和其他不一样？", ["方", "方", "圆", "方"], "第 3 个", "其他都是方，第 3 个是圆。", ["第 1 个", "第 2 个", "第 3 个", "第 4 个"]),
+    positionQuestion("space-move-right-three", "从 2 往右走 3 格，会到几？", ["1", "2", "3", "4", "5"], "5", "从 2 往右数三格是 3、4、5。", ["3", "4", "5", "6"]),
+    positionQuestion("space-rightmost-ball", "书在球左边，球在尺左边，谁在最右边？", ["书", "球", "尺"], "尺", "从左到右是书、球、尺。", ["书", "球", "尺", "都一样"]),
+    shapeQuestion("space-two-squares", "两个一样的方形可以拼成什么？", ["方", "+", "方"], "长方", "两个方形排在一起，可以拼成长方。", ["圆", "三角", "长方", "球"]),
+    shapeQuestion("space-odd-triangle", "三角、三角、方、三角，哪一个不一样？", ["三角", "三角", "方", "三角"], "第 3 个", "其他都是三角，第 3 个是方。", ["第 1 个", "第 2 个", "第 3 个", "第 4 个"])
   ]);
 
   function addQuestions(lessonId, questions) {
